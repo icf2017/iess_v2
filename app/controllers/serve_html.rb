@@ -17,6 +17,10 @@ class ServeHTML < Sinatra::Base
       haml :'default.html'
     end
 
+    get '/docs/Karnataka_energy_2050.xlsx' do
+      send_file File.join(settings.root, '../models', 'model.xlsx'), :filename => 'Karnataka_energy_2050.xlsx', :type => 'Application/octet-stream'
+    end
+
   else
 
     get '/' do
@@ -26,5 +30,10 @@ class ServeHTML < Sinatra::Base
     get %r{/pathways/(\d{59})/(.*)} do |id, action|
       send_file 'public/default.html'
     end
+
+    get '/docs/Karnataka_energy_2050.xlsx' do
+      send_file File.join(settings.root, '../models', 'model.xlsx'), :filename => 'Karnataka_energy_2050.xlsx', :type => 'Application/octet-stream'
+    end
+
   end
 end

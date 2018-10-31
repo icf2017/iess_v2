@@ -20,19 +20,21 @@ body {
   margin: 0;
   overflow: inherit;
   width: 75%;
-  //z-index: -1;
-  //background-color: #e1e1e1;
   min-height: 285px;
 }
 
 .chart {
   padding: 0;
   border: 0;
-  /*margin: 0 0 5px 0;*/
   width: 33.3%;
-  /*height: 275px;*/
   float: left;
-  //z-index: -1;
+}
+
+.all_energy_chart {
+  padding: 0;
+  border: 0;
+  width: 47%;
+  float: left;
 }
 
 #display_table {
@@ -74,22 +76,20 @@ body {
 div.warning_option {
   width: 13%;
   float: right;
-  margin: 0 1%;
   display: none;
-  border: 2px solid #154c85;
 
   h6 {
     color: #910000;
     float: left;
     margin: 0 0 5px;
-    padding: 0;
+    padding: 5px;
     text-align: center;
     width: 100%;
   }
   p {
-
+    border: 2px solid #154c85;
     padding: 5px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
   ul {
     margin: 0;
@@ -116,15 +116,23 @@ div.warning_option {
 }
 
 .subnav .selected {
-  color: $primary !important;
+  color: $white !important;
+  font-weight: 800;
 }
 
-#SeriesData0 {
-  width: 90px !important;
+#display-data0 .series-data{
+  width: 12.5% !important;
+  text-align: center;
 }
 
-#SeriesData1, #SeriesData2, #SeriesData3 {
-  width: 60px !important;
+#display-data1 .series-data{
+  width: 12.5% !important;
+  text-align: center;
+}
+
+#display-data2 .series-data{
+  width: 12.5% !important;
+  text-align: center;
 }
 
 .legend-show {

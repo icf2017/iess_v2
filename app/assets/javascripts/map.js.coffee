@@ -1,6 +1,6 @@
 LandShare = "
-  <div id='PercentLand' style='float:right; width:100%'> 
-    <h4>Percent Share of Land Requirement (2047)</h4>
+  <div id='PercentLand' style='float:right; width:100%'>
+    <h6>Percent Share of Land Requirement (2050)</h6>
     <table style='width:100%; float:left' cellpadding='8' border=1>
     </table>
   </div>
@@ -9,24 +9,24 @@ LandShare = "
 class LandUse
 
   constructor: () ->
-  
-  html = "<p style='position:absolute;left: 730px;top: 120px;width: 140px;z-index: 1;'>India's Land Area <br> <b></b></p>"
+
+  html = ""
 
   setup: () ->
-    document.getElementById("results").style.width = "75%"
+    document.getElementById("results").style.width = "100%"
     target = $('#results')
 
     target.append("<div id='land_use' class='chart'></div>")
-    target.append("<div id='land_map' style='background-image:url(../../assets/images/india.jpg);background-size: 100% 100%; background-repeat: no-repeat;' class='chart'></div>")
+    target.append("<div id='land_map' style='background-image:url(../../assets/images/karnataka.png);background-size: 100% 100%; background-repeat: no-repeat;' class='chart'></div>")
     target.append("<div id='land_share' class='chart'></div>")
 
     target.append(html)
 
     document.getElementById("pathway_box").style.display = "block"
     document.getElementById("classic_controls").style.display = "block"
-    document.getElementById("land_use").style.width = "55%"
-    document.getElementById("land_map").style.width = "24%"
-    document.getElementById("land_share").style.width = "15%"
+    document.getElementById("land_use").style.width = "50%"
+    document.getElementById("land_map").style.width = "20%"
+    document.getElementById("land_share").style.width = "25%"
     document.getElementById("warning").style.display = "none"
     $('#land_share').append(LandShare)
     $('#warning').empty()
@@ -42,19 +42,22 @@ class LandUse
 
         margin: [55, 25, 15, 90],
       },
-      title: { text: 'Land Footprint (2047)' },
-      subtitle: { text: "In Million hectares of land"},
-      yAxis: { 
-        labels: formatter: ->
-          return Math.round(this.value/1) + ''      
-        title: null },
+      title: {text: 'Land Footprint (2050)'},
+      subtitle: {text: "In Million hectares of land"},
+      yAxis: {
+        labels:
+          formatter: ->
+            return Math.round(this.value / 1) + ''
+        title: null
+      },
 
       xAxis: {
         categories: ['Renewables Energy',
-                     'Conventional Energy',
-                     'Bioenergy', 'Total'],
-        labels: formatter: ->
-          @value
+          'Conventional Energy',
+          'Bioenergy', 'Total'],
+        labels:
+          formatter: ->
+            @value
       },
 
       legend: {
@@ -65,7 +68,8 @@ class LandUse
         verticalAlign: 'middle',
         itemStyle: {
           font: '8pt sans-serif',
-        },  },
+        },
+      },
 
       tooltip: {
         formatter: () ->
@@ -74,7 +78,6 @@ class LandUse
 
       plotOptions: {
         series: {
-          #stacking: 'normal',
           dataLabels: {
             enabled: true,
             color: 'black',
@@ -92,7 +95,7 @@ class LandUse
     @land_map = new Highcharts.Chart({
       chart: {
         renderTo: 'land_map',
-        type: 'pie',  height: 250, width:300,
+        type: 'pie', height: 250, width: 300,
         backgroundColor: 'Transparent',
         margin: [0, 0, 0, 0],
         spacingTop: 0,
@@ -100,12 +103,13 @@ class LandUse
         spacingLeft: 0,
         spacingRight: 0
       },
-      title: { text: '' },
+      title: {text: ''},
 
       legend: {
-        enabled: false},
+        enabled: false
+      },
 
-      tooltip: { 
+      tooltip: {
         enabled: true,
         shared: true
         style:
@@ -113,35 +117,23 @@ class LandUse
           padding: "8px"
         positioner: ->
           x: 10
-          y: 10	
+          y: 10
 
         pointFormat: '<b>{point.y:.1f} M ha</b>',
 
-      }
-
+      },
       plotOptions: {
         pie: {
-          size:'35%',
+          size: '35%',
           center: [60, 105],
           allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            distance: -5,
-            enabled: true,
-            format: '<b>{point.name}</b>: <br><b>{point.y:.1f} M ha</b>',
-            style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-            }
-          }
+          cursor: 'pointer'
         }
       },
-
       series: []
-
     })
 
   teardown: () ->
-    #Return the results box to original position
     document.getElementById("results").style.width = "100%"
     document.getElementById("results").style.marginRight = "0"
     document.getElementById("results").style.overflow = "hidden"
@@ -151,14 +143,19 @@ class LandUse
     @land_chart = null
     @land_map = null
 
+  updateNavBar: () ->
+    $('li.nav-item a.active').removeClass('active')
+    $('li.nav-item:nth-child(5) a').addClass('active')
+
   updateResults: (@pathway) ->
+    @updateNavBar()
     @setup() unless @land_chart? && @land_map?
 
-    $('#results p b').html((@pathway['land_do_nothing']["India's Land Area"][1]).toFixed(0)+' M ha')   
+    $('#results p b').html((@pathway['land_do_nothing']["State's Land Area"][1]).toFixed(0) + ' M ha')
 
-    titles_land_do_nothing = ['Renewables','Conventional','Bio Energy', 'Total']
+    titles_land_do_nothing = ['Renewables', 'Conventional', 'Bio Energy', 'Total']
 
-    scenarios = ["Determined Effort","Your Pathway" ]
+    scenarios = ["Determined Effort", "Your Pathway"]
 
     i = 0
     #Store values for the textbox, also convert to 1000km2
@@ -193,17 +190,22 @@ class LandUse
 
     #remaining = @pathway['land_do_nothing']["India's Land Area"][1] - @pathway['land_do_nothing']["Total"][1]
 
-    data = [{name:"Bio Energy",y: @pathway['land_do_nothing']["Bio Energy"][1]}, {name:"Conventional", y:@pathway['land_do_nothing']["Conventional"][1]},{name: "Renewables", y:@pathway['land_do_nothing']["Renewables"][1]}]
+    data = [{name: "Bio Energy", y: @pathway['land_do_nothing']["Bio Energy"][1]},
+      {name: "Conventional", y: @pathway['land_do_nothing']["Conventional"][1]},
+      {name: "Renewables", y: @pathway['land_do_nothing']["Renewables"][1]}]
     if @land_map.series[0]?
-      @land_map.series[0].setData(data,false)
+      @land_map.series[0].setData(data, false)
     else
-      @land_map.addSeries({name:'Total Area',colorByPoint: true, data:data},false)
+      @land_map.addSeries({name: 'Total Area', colorByPoint: true, data: data}, false)
 
-    data = [((@pathway["land_do_nothing"]["Renewables"][1])/(@pathway["land_do_nothing"]["India\'s Land Area"][1])*100).toFixed(2),((@pathway["land_do_nothing"]["Conventional"][1])/(@pathway["land_do_nothing"]["India\'s Land Area"][1])*100).toFixed(2),((@pathway["land_do_nothing"]["Bio Energy"][1])/(@pathway["land_do_nothing"]["India\'s Land Area"][1])*100).toFixed(2),((@pathway["land_do_nothing"]["Total"][1])/(@pathway["land_do_nothing"]["India\'s Land Area"][1])*100).toFixed(2)]
+    data = [((@pathway["land_do_nothing"]["Renewables"][1]) / (@pathway["land_do_nothing"]["State's Land Area"][1]) * 100).toFixed(2),
+      ((@pathway["land_do_nothing"]["Conventional"][1]) / (@pathway["land_do_nothing"]["State's Land Area"][1]) * 100).toFixed(2),
+      ((@pathway["land_do_nothing"]["Bio Energy"][1]) / (@pathway["land_do_nothing"]["State's Land Area"][1]) * 100).toFixed(2),
+      ((@pathway["land_do_nothing"]["Total"][1]) / (@pathway["land_do_nothing"]["State's Land Area"][1]) * 100).toFixed(2)]
 
 
     $('#PercentLand table').empty()
-    $('#PercentLand table').append('<tr><td>Renewables</td><td>'+data[0]+'%</td></tr><tr><td>Conventional</td><td>'+data[1]+'%</td></tr><tr><td>Bio Energy</td><td>'+data[2]+'%</td></tr><tr><td>Total</td><td>'+data[3]+'%</td></tr>')
+    $('#PercentLand table').append('<tr><td>Renewables</td><td>' + data[0] + '%</td></tr><tr><td>Conventional</td><td>' + data[1] + '%</td></tr><tr><td>Bio Energy</td><td>' + data[2] + '%</td></tr><tr><td>Total</td><td>' + data[3] + '%</td></tr>')
 
     @land_chart.redraw()
     @land_map.redraw()

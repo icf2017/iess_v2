@@ -1,3 +1,3 @@
 set :stage, :production
 
-server ENV['IESS_PRODUCTION_ENDPOINT'], user: 'root', roles: %w{app db web}
+server '69.164.203.123', user: 'root', roles: %w{app db web}

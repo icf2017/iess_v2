@@ -11,8 +11,8 @@ $(window).load(function () {
       orphan: true,
       placement: "top",
       backdrop: true,
-      title: "Welcome to India Energy Security Scenarios, 2047",
-      content: "The IESS, 2047 is an energy scenario building tool, which aims to explore a range of potential future energy scenarios for India, for diverse energy demand and supply sectors, leading up to 2047.<br/> <br/> 21 Energy Demand and Supply sectors, and 50 levers that will impact our energy system are available to the user. Combination of the above choices offer hundreds of energy pathways till the year 2047.",
+      title: "Welcome to Karnataka State Energy Calculator 2050",
+      content: "The KSEC, 2050 is an energy scenario building tool, which aims to explore a range of potential future energy scenarios for India, for diverse energy demand and supply sectors, leading up to 2050.<br/> <br/> 17 Energy Demand and Supply sectors, and 38 levers that will impact our energy system are available to the user. Combination of the above choices offer hundreds of energy pathways till the year 2050.",
     },
     {
       element: "ul.navbar-nav",
@@ -20,6 +20,24 @@ $(window).load(function () {
       backdrop: true,
       title: "The Implications",
       content: "This menu bar gives you a range of options (we call the implications for a pathway) that you can explore for your chosen pathway.",
+      backdropPadding: 10,
+      animation: true
+    },
+    {
+      element: "ul.help",
+      placement: "top",
+      backdrop: true,
+      title: "Need some help?",
+      content: "Click on ‘Help’ to know more about how to use the webtool and some more of its interesting features.<br/> You can also submit feedback & explore the technical white papers",
+      backdropPadding: 10,
+      animation: true
+    },
+    {
+      element: "ul.share",
+      placement: "top",
+      backdrop: true,
+      title: "Share with friends",
+      content: "You can share the pathway that you have created on your social media accounts by clicking on the Facebook and Twitter icons.",
       backdropPadding: 10,
       animation: true
     },
@@ -112,26 +130,7 @@ $(window).load(function () {
       content: "Choose from several pre-programmed example pathways to witness their implications.",
       backdropPadding: 10,
       animation: true
-    },
-    {
-      element: ".menu_1",
-      placement: "bottom",
-      backdrop: true,
-      title: "Need some more help?",
-      content: "Click on ‘Help’ to know more about how to use the webtool and some more of its interesting features.<br/>You can share the pathway that you have created on your social media accounts by clicking on the Facebook and Twitter icons.",
-      backdropPadding: 10,
-      animation: true
-    },
-    {
-      element: "#logoImg",
-      placement: "bottom",
-      backdrop: true,
-      title: "Go to the website",
-      content: "To dig deeper into sector specific assumptions and documentation, click on the <a href='http://indiaenergy.gov.in' target='_new'>IESS, 2047</a> to go to the website.",
-      backdropPadding: 10,
-      animation: true
     }
-
   ]);
 
   // Initialize the tour

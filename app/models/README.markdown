@@ -31,6 +31,8 @@ This may take up to 4 hours.
 The next step is to check whether model_result.rb needs to be altered to 
 pick up the correct places in the underlying excel.
 
+## Frequent Issues
+
 ## In case excel compiling fails because of memory issue?
 
 ```shell
@@ -40,3 +42,11 @@ pick up the correct places in the underlying excel.
   chmod 0600 /swap1
   swapon /swap1
 ```
+
+## In case Linux machine is not able to read the xls
+
+```shell
+
+sudo apt-get install unzip
+
+``` 

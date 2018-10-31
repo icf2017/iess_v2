@@ -27,10 +27,10 @@ shareHTML = """
         <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=tomcounsell"></script>
         <!-- AddThis Button END-->
       </p>
-      <!--p>* On modern browsers, this url is the same as the one you will see in the address bar as you use the IESS 2047 tool. On older browsers, such as Internet Explorer 6 and 7, it will not be.</p>
+      <!--p>* On modern browsers, this url is the same as the one you will see in the address bar as you use the KSEC 2050 tool. On older browsers, such as Internet Explorer 6 and 7, it will not be.</p>
     </div>
     <div id='excel'>
-      <h1>Sharing this scenario with the excel version of the India Energy Security Scenarios 2047</h1>
+      <h1>Sharing this scenario with the excel version of the Karnataka State Energy Calculator 2050</h1>
       <p>
         You may want to explore your scenario in more detail, taking a look at all the assumptions behind our modelling, by downloading
         <a href="http://planningcommission.nic.in/sectors/index.php?sectors=energy">the underlying excel spreadsheet.</a>

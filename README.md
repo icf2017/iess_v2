@@ -1,6 +1,6 @@
-# IESS 2047 Calculator
+# KSEC 2050 Calculator
 
-A web interface to the India Energy Security Scenarios  calculator
+A web interface to the Karnataka State Energy Calculator 2050
 
 Further detail on the project:
 http://indiaenergy.gov.in

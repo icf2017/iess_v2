@@ -6,7 +6,7 @@ class CostsNew
     document.getElementById("results").style.width = "65%"
     document.getElementById("warning").style.width = "22%"
     target = $('#results')
-    target.append("<div id = 'increamental' class='chart'></div><div id='pathway' class='pathway_text'>This cost is <b>0%</b> of the cumulative GDP till the year 2047</div>")
+    target.append("<div id = 'increamental' class='chart'></div><div id='pathway' class='pathway_text'>This cost is <b>0%</b> of the cumulative GDP till the year 2050</div>")
 
 
 
@@ -21,7 +21,7 @@ class CostsNew
     document.getElementById("warning").style.display = "block"
     $('#display').empty()
     $('#warning').empty()
-    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-default' onclick='twentyfifty.switchView(\"total_cost\")'>Total Energy Cost</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-default selected' onclick='twentyfifty.switchView(\"costs\")'>Cost Overview</a></li><li><a href='#' id='energy-subnav-3' class='btn btn-default' onclick='twentyfifty.switchView(\"costsYear\")'>Differential Cost</a></li></ul>")
+    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-dark' onclick='twentyfifty.switchView(\"total_cost\")'>Total Energy Cost</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-dark selected' onclick='twentyfifty.switchView(\"costs\")'>Cost Overview</a></li><li><a href='#' id='energy-subnav-3' class='btn btn-dark' onclick='twentyfifty.switchView(\"costsYear\")'>Differential Cost</a></li></ul>")
  
 
     @increamental_chart = new Highcharts.Chart({
@@ -33,7 +33,7 @@ class CostsNew
         marginRight: 30,
         marginLeft: 70
       },
-      title: { text: 'Cumulative Costs in INR Trillion' },
+      title: { text: 'Cumulative Costs in INR Billion' },
       subtitle: { text: ""},
       yAxis: { 
         labels: formatter: ->

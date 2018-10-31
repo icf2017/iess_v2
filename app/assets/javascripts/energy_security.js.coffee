@@ -21,7 +21,7 @@ class EnergySecurity
     $('#warning').empty()
     $('#display').empty()
  
-    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='selected btn btn-default' onclick=''>Fossil Fuel</a></li></ul>")
+    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='selected btn btn-dark' onclick=''>Fossil Fuel</a></li></ul>")
 
     @dependency_chart = new Highcharts.Chart({
       chart: { renderTo: 'dependency_chart', type: 'line', height: 250, width: 300 },
@@ -88,7 +88,7 @@ class EnergySecurity
               $("#display-data0 #SeriesName").html this.name
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data0 #SeriesData" + i).html Ddata[i]
                 i++
               return
@@ -97,7 +97,7 @@ class EnergySecurity
               twentyfifty.highlightLegend "custom-legend0", this.index, false
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data0 #SeriesData" + i).empty()
                 i++
               $("#display-data0 #SeriesName").empty()
@@ -169,14 +169,18 @@ class EnergySecurity
               twentyfifty.highlightLegend "custom-legend2", this.index, true
               Ddata = [
                 Highcharts.numberFormat(@yData[0], 0, ",")
+                Highcharts.numberFormat(@yData[1], 0, ",")
+                Highcharts.numberFormat(@yData[2], 0, ",")
                 Highcharts.numberFormat(@yData[3], 0, ",")
+                Highcharts.numberFormat(@yData[4], 0, ",")
                 Highcharts.numberFormat(@yData[5], 0, ",")
+                Highcharts.numberFormat(@yData[6], 0, ",")
                 Highcharts.numberFormat(@yData[7], 0, ",")
               ]
               $("#display-data2 #SeriesName").html this.name
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data2 #SeriesData" + i).html Ddata[i]
                 i++
               return
@@ -185,7 +189,7 @@ class EnergySecurity
               twentyfifty.highlightLegend "custom-legend2", this.index, false
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data2 #SeriesData" + i).empty()
                 i++
               $("#display-data2 #SeriesName").empty()
@@ -249,15 +253,19 @@ class EnergySecurity
               twentyfifty.highlightLegend "custom-legend1", this.index, true
               Ddata = [
                 Highcharts.numberFormat(@yData[0], 0, ",")
+                Highcharts.numberFormat(@yData[1], 0, ",")
+                Highcharts.numberFormat(@yData[2], 0, ",")
                 Highcharts.numberFormat(@yData[3], 0, ",")
+                Highcharts.numberFormat(@yData[4], 0, ",")
                 Highcharts.numberFormat(@yData[5], 0, ",")
+                Highcharts.numberFormat(@yData[6], 0, ",")
                 Highcharts.numberFormat(@yData[7], 0, ",")
               ]
               $("#display-data1 #SeriesName").html this.name
 
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data1 #SeriesData" + i).html Ddata[i]
                 i++
               return
@@ -266,7 +274,7 @@ class EnergySecurity
               twentyfifty.highlightLegend "custom-legend1", this.index, false
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data1 #SeriesData" + i).empty()
                 i++
               $("#display-data1 #SeriesName").empty()

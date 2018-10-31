@@ -19,7 +19,7 @@ class GridBalancingMonsoon
     $('#warning').empty()
     $('#display').empty()
  
-    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-default' onclick='twentyfifty.switchView(\"grid_balancing_summer\")'>Typical Summer Day</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-default selected' onclick='twentyfifty.switchView(\"grid_balancing_monsoon\")'>Typical Monsoon Day</a></li><li><a href='#' id='energy-subnav-3' class='btn btn-default' onclick='twentyfifty.switchView(\"grid_balancing_winter\")'>Typical Winter Day</a></li></ul>")
+    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-dark' onclick='twentyfifty.switchView(\"grid_balancing_summer\")'>Typical Summer Day</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-dark selected' onclick='twentyfifty.switchView(\"grid_balancing_monsoon\")'>Typical Monsoon Day</a></li><li><a href='#' id='energy-subnav-3' class='btn btn-dark' onclick='twentyfifty.switchView(\"grid_balancing_winter\")'>Typical Winter Day</a></li></ul>")
     
     #$('#warning').append("<h5>Warning</h5>")
 
@@ -83,14 +83,18 @@ class GridBalancingMonsoon
               twentyfifty.highlightLegend "custom-legend0", this.index, true
               Ddata = [
                 Highcharts.numberFormat(@yData[0], 0, ",")
+                Highcharts.numberFormat(@yData[1], 0, ",")
+                Highcharts.numberFormat(@yData[2], 0, ",")
                 Highcharts.numberFormat(@yData[3], 0, ",")
+                Highcharts.numberFormat(@yData[4], 0, ",")
                 Highcharts.numberFormat(@yData[5], 0, ",")
+                Highcharts.numberFormat(@yData[6], 0, ",")
                 Highcharts.numberFormat(@yData[7], 0, ",")
               ]
               $("#display-data0 #SeriesName").html this.name
               i = 0
               
-              while i < 4
+              while i < 8
                 $("#display-data0 #SeriesData" + i).html Ddata[i]
                 i++
               return
@@ -99,7 +103,7 @@ class GridBalancingMonsoon
               twentyfifty.highlightLegend "custom-legend0", this.index, false
               i = 0
 
-              while i < 4
+              while i < 8
                 $("#display-data0 #SeriesData" + i).empty()
                 i++
               $("#display-data0 #SeriesName").empty()

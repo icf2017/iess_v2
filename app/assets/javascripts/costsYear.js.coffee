@@ -5,13 +5,14 @@ class costsYear
   # Below is the slider html. Needs no changes.
   html = "
            <select id='year_range' name='year_range'>
-             <option value='2017'>2017</option>
-             <option value='2022'>2022</option>
-             <option value='2027'>2027</option>
-             <option value='2032'>2032</option>
-             <option value='2037'>2037</option>
-             <option value='2042'>2042</option>
-             <option value='2047' selected >2047</option>
+             <option value='2015'>2015</option>
+             <option value='2020'>2020</option>
+             <option value='2025'>2025</option>
+             <option value='2030'>2030</option>
+             <option value='2035'>2035</option>
+             <option value='2040'>2040</option>
+             <option value='2045'>2045</option>
+             <option value='2050' selected >2050</option>
            </select>
 
          "
@@ -21,7 +22,7 @@ class costsYear
     @setup() unless @yearwise_chart? && @increamentalYear_chart?
     
 
-    data_year = [2017,2022,2027,2032,2037,2042,2047]
+    data_year = [2015,2020,2025,2030,2035,2040,2045,20450]
     data_y = []
     @SecYear = 'Total'    
     data = @pathway.increamental_year[window.twentyfifty.views.costsYear.SecYear]
@@ -42,11 +43,11 @@ class costsYear
        window.yearwise.setTitle({text: 'Total'})
 
 
-    @curYear = '2047'
+    @curYear = '2050'
     data=[] 
     i=0
     while i < 8
-      data.push([@pathway['increamental_table'][window.twentyfifty.views.costsYear.curYear][i][0], @pathway['increamental_table']['2047'][i][1]])  
+      data.push([@pathway['increamental_table'][window.twentyfifty.views.costsYear.curYear][i][0], @pathway['increamental_table']['2050'][i][1]])
       i++
     if @increamentalYear_chart.series[0]?
       @increamentalYear_chart.series[0].setData(data,false)
@@ -93,7 +94,7 @@ class costsYear
     document.getElementById("warning").style.display = "none"
     $('#warning').empty()
     $('#display').empty()
-    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-default' onclick='twentyfifty.switchView(\"total_cost\")'>Total Energy Cost</a></li><li><a href='#' class='btn btn-default' id='energy-subnav-1' onclick='twentyfifty.switchView(\"costs\")'>Cost Overview</a></li><li><a href='#' id='energy-subnav-2' class='selected btn btn-default' onclick='twentyfifty.switchView(\"costsYear\")'>Differential Cost</a></li></ul>")
+    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-dark' onclick='twentyfifty.switchView(\"total_cost\")'>Total Energy Cost</a></li><li><a href='#' class='btn btn-dark' id='energy-subnav-1' onclick='twentyfifty.switchView(\"costs\")'>Cost Overview</a></li><li><a href='#' id='energy-subnav-2' class='selected btn btn-dark' onclick='twentyfifty.switchView(\"costsYear\")'>Differential Cost</a></li></ul>")
 
 
     window.increamentalYear = @increamentalYear_chart = new Highcharts.Chart({
@@ -103,7 +104,7 @@ class costsYear
         color: '#fff'
         height: 250, marginLeft:65, marginRight: 30
       },
-      title: { text: 'Differential Costs (INR Trillion) in the year ' },
+      title: { text: 'Differential Costs (INR Billion) in the year ' },
       subtitle: { text: ""},
       yAxis: { 
         labels: formatter: ->
@@ -137,7 +138,7 @@ class costsYear
 
                   data_y = []
                   data_t = []
-                  data_year = [2017,2022,2027,2032,2037,2042,2047]
+                  data_year = [2015,2020,2025,2030,2035,2040,2045,2050]
                   data = data.increamental_year[window.twentyfifty.views.costsYear.SecYear]
                   j = 0
                   while j < data.length
@@ -218,21 +219,20 @@ class costsYear
         labels: formatter: ->
 
           switch @value
-            when 2017
-              return 2017
-
-            when 2027
-              return 2027
-            when 2037
-              return 2037
-            when 2047
-              return 2047
+            when 2015
+              return 2015
+            when 2025
+              return 2025
+            when 2035
+              return 2035
+            when 2045
+              return 2045
 
       },
 
       yAxis: {
         title: {
-          text:'Differential Cost (INR Trillion)',
+          text:'Differential Cost (INR Billion)',
           style: {
             fontSize: '10px',
             color: '#414141',

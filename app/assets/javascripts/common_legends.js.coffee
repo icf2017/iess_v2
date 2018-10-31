@@ -44,19 +44,23 @@ highData = (n, series, hide, name) ->
     if name != 'Grid'
       Ddata = [
         Highcharts.numberFormat(series.yData[0], 0, ",")
+        Highcharts.numberFormat(series.yData[1], 0, ",")
+        Highcharts.numberFormat(series.yData[2], 0, ",")
         Highcharts.numberFormat(series.yData[3], 0, ",")
+        Highcharts.numberFormat(series.yData[4], 0, ",")
         Highcharts.numberFormat(series.yData[5], 0, ",")
+        Highcharts.numberFormat(series.yData[6], 0, ",")
         Highcharts.numberFormat(series.yData[7], 0, ",")
       ]
 
       i = 0
-      while i < 4
+      while i < 8
         $("#display-data" + n + " #SeriesData" + i).html Ddata[i]
         i++
   else
     i = 0
 
-    while i < 4
+    while i < 8
       $("#display-data" + n + " #SeriesData" + i).empty()
       i++
     $("#display-data" + n + " #SeriesName").empty()
@@ -99,8 +103,8 @@ callCommon = (chartIdArr) ->
     ).appendTo(chartIdArr[i])
     z = 0
 
-    while z < 4
-      $("<p id=\"SeriesData" + z + "\">").css(
+    while z < 8
+      $("<p class='series-data' id=\"SeriesData" + z + "\">").css(
         width: 43
         paddingRight: 5
         paddingLeft: 5
@@ -108,7 +112,8 @@ callCommon = (chartIdArr) ->
         margin: 0
         float: "left"
         fontWeight: "bold"
-        fontSize: 10
+        fontSize: 10,
+        'text-align': 'center'
       ).appendTo $xData
 
       z++;

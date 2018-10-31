@@ -20,7 +20,7 @@ class PrimaryEnergyDetail
     $('#warning').empty()
     $('#display').empty()
 
-    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-default' onclick='twentyfifty.switchView(\"primary_energy_chart\")'>Demand & Supply</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-default' onclick='twentyfifty.switchView(\"primary_energy_overview_chart\")'>Sector-wise Drilldown</a></li><li><a href='#' id='energy-subnav-3' class='selected btn btn-default' onclick='twentyfifty.switchView(\"primary_energy_detail_chart\")'>2012 vs 2047</a></li></ul>")
+    $('#display').append("<h5>Explore</h5><ul class='subnav'><li><a href='#' id='energy-subnav-1' class='btn btn-dark' onclick='twentyfifty.switchView(\"primary_energy_chart\")'>Demand & Supply</a></li><li><a href='#' id='energy-subnav-2' class='btn btn-dark' onclick='twentyfifty.switchView(\"primary_energy_overview_chart\")'>Sector-wise Drilldown</a></li><li><a href='#' id='energy-subnav-3' class='selected btn btn-dark' onclick='twentyfifty.switchView(\"primary_energy_detail_chart\")'>2015 vs 2050</a></li></ul>")
     
     #$('#warning').append("<h5>Warning</h5>")
     @energy_demand_chart = new Highcharts.Chart({
@@ -28,7 +28,7 @@ class PrimaryEnergyDetail
       title: { text: 'Energy Demand' },
       yAxis: {
         labels: formatter: ->
-          return Math.round(this.value/1000) + 'k'
+          return Math.round(this.value)
 
         title: {
           style: {
@@ -44,12 +44,12 @@ class PrimaryEnergyDetail
           text: "TWh/yr"
         }, 
         min: 0, 
-        max: 24000, 
+        max: 1000,
         width: 225 
       },
       xAxis:{ 
         width: 240,
-        categories: [2012, 2047] },
+        categories: [2015, 2050] },
       legend:{
         itemStyle: { fontSize: '7pt' }
       },
@@ -102,12 +102,12 @@ class PrimaryEnergyDetail
           text: "TWh/yr"
         }, 
         min: 0, 
-        max: 24000, 
+        max: 2000,
         width: 225 
       },
       xAxis:{ 
         width: 240,
-        categories: [2012, 2047] },
+        categories: [2015, 2050] },
       legend:{
         itemStyle: { fontSize: '7pt' }
       },
@@ -140,7 +140,7 @@ class PrimaryEnergyDetail
 
     @energy_comparison_chart = new Highcharts.Chart({
       chart: { renderTo: 'comparison_chart', type: 'pie', width:300, height:250 },
-      title: { text: 'Energy Scenario in 2047'},
+      title: { text: 'Energy Scenario in 2050'},
    
       tooltip: { 
         enabled: true       
@@ -183,7 +183,7 @@ class PrimaryEnergyDetail
     
     @setup() unless @energy_demand_chart? && @energy_supply_chart? && @energy_comparison_chart
 
-    titles = ["Telecom","Transport","Industry","Cooking","Buildings","Pumps& Tractors",
+    titles = ["Transport","Industry","Cooking","Buildings","Pumps& Tractors",
     ]
     i = 0
     for name in titles

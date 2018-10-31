@@ -5,7 +5,7 @@ class SankeyDisplay
   # Below is the slider html. Needs no changes.
   html = """
          <div class="slider_wrap">
-         <h3 id="year_head"> Flows in the Indian Energy System for the year 2047 </h3>
+         <h3 id="year_head"> Flows in the Indian Energy System for the year 2050 </h3>
          <div class="toggle_radio">
          <input type="radio" class="toggle_option" id="0_toggle" name="toggle_option">
          <input type="radio" class="toggle_option" id="1_toggle" name="toggle_option">
@@ -16,25 +16,30 @@ class SankeyDisplay
          <input type="radio" class="toggle_option" id="6_toggle" name="toggle_option">
          <input type="radio" class="toggle_option" checked id="7_toggle" name="toggle_option">
 
-         <label for="0_toggle"><p>2012</p></label>
-         <label for="1_toggle"><p>2017</p></label>
-         <label for="2_toggle"><p>2022</p></label>
-         <label for="3_toggle"><p>2027</p></label>
-         <label for="4_toggle"><p>2032</p></label>
-         <label for="5_toggle"><p>2037</p></label>
-         <label for="6_toggle"><p>2042</p></label>
-         <label for="7_toggle"><p>2047</p></label>
+         <label for="0_toggle"><p>2015</p></label>
+         <label for="1_toggle"><p>2020</p></label>
+         <label for="2_toggle"><p>2025</p></label>
+         <label for="3_toggle"><p>2030</p></label>
+         <label for="4_toggle"><p>2035</p></label>
+         <label for="5_toggle"><p>2040</p></label>
+         <label for="6_toggle"><p>2045</p></label>
+         <label for="7_toggle"><p>2050</p></label>
 
          <div class="toggle_option_slider">
          </div>
          </div>
          """
- 
+
+  updateNavBar: () ->
+    $('li.nav-item a.active').removeClass('active')
+    $('li.nav-item:nth-child(4) a').addClass('active')
+
   updateResults: (pathway) ->
+    @updateNavBar()
     @setup() unless @s?
 
-    #curyear is the variable that holds the current year. Defaults to 2047 unless explicitly changed elsewhere.
-    @curyear = 2047 unless @curyear?
+    #curyear is the variable that holds the current year. Defaults to 2050 unless explicitly changed elsewhere.
+    @curyear = 2050 unless @curyear?
     data = pathway.sankey[window.twentyfifty.views.sankey.curyear]
     #alert data
 
@@ -81,10 +86,13 @@ class SankeyDisplay
       "Nuclear",
       "Coal Production",
       "Coal Imports",
+      "Coal Supply",
       "Oil Production",
       "Oil Imports",
+      "Oil Supply",
       "Gas Production",
       "Gas Imports",
+      "Gas Supply",
       "Agricultural Waste/ Energy Crops",
       "Municipal Waste",
       "Suppressed Electricity Demand",
@@ -138,7 +146,6 @@ class SankeyDisplay
       "Freight Transport",
       "Industry",
       "Agriculture",
-      "Telecom",
       "Over Generation/Exports",
       "T&D Losses",
       "Losses"
@@ -201,7 +208,7 @@ class SankeyDisplay
       #@recolour(@boxes["T&D Losses"].left_lines,"#ddd")
       #@recolour(@boxes["Electricity Grid"].left_lines,"#CCEEFF")
 
-    pixels_per_TWh = $('#sankey').height() / 100000
+    pixels_per_TWh = $('#sankey').height() / 10000
 
     @s.y_space = 25 #Math.round(1000 * pixels_per_TWh)
     @s.right_margin = 250
@@ -216,13 +223,13 @@ class SankeyDisplay
     @s.convert_box_value_labels_callback = (flow) ->
       return (""+Math.round(flow)+" TWh/y")
 
-    # We inserted the html. Most of the following css is to make the slider work, and map 0-7 to 2012-2047
+    # We inserted the html. Most of the following css is to make the slider work, and map 0-7 to 2012-2050
     # This also updates the text on the title
     $(".toggle_option_slider").css "left", 7 * 100
     $(".toggle_option").click ->
       myyear = $(this).attr("id").split("_")[0]
       $(".toggle_option_slider").css "left", myyear * 100
-      myyear = myyear*5 + 2012
+      myyear = myyear*5 + 2015
       $('#year_head').text "Flows in the Indian Energy System for the year " + myyear
       window.twentyfifty.views.sankey.curyear = myyear
       # TRIED a synchronous call for the data, still no luck.

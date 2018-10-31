@@ -55,18 +55,23 @@ module Helper
   end
 
   def classic_table_row_for_choice(choice)
-    #row = ["<td class='name'><a href='planningcommission.gov.in/energy2047/demand/' target='_new' onmouseover='twentyfifty.startDemo(#{choice.number}); return true;' onmouseout='twentyfifty.stopDemo(#{choice.number});return true;'>#{choice.name}</a></td>"]
     if choice.number != 54
-      row = ["<td class='name' cellpadding='10'><a href='/assets/onepage/#{choice.doc}' target='_new' title='#{choice.descriptions[5]}' onmouseover='twentyfifty.startDemo(#{choice.number}); return true;' onmouseout='twentyfifty.stopDemo(#{choice.number});return true;'>#{choice.name}</a></td>"]
-
+      row = [
+        "<td class='name' cellpadding='10'>
+          #{generate_link(choice)}
+        </td>"
+      ]
       row << "<td width='20px'><a href='/assets/onepage/#{choice.doc}' target='_new' onmouseover='twentyfifty.startDemo(#{choice.number}); return true;' onmouseout='twentyfifty.stopDemo(#{choice.number});return true;'><img height='13px' width='13px'  src='/assets/images/get_info.png'></a></td>"
     else
-      row = ["<td class='name' cellpadding='10'><a title='#{choice.descriptions[5]}' onmouseover='twentyfifty.startDemo(#{choice.number}); return true;' onmouseout='twentyfifty.stopDemo(#{choice.number});return true;'>#{choice.name}</a></td>"]
-
+      row = [
+        "<td class='name' cellpadding='10'>
+          #{generate_link(choice)}
+        </td>"
+      ]
       row << "<td width='20px'></td>"
     end
     choice.levels.each.with_index do |level, i|
-      if choice.number == 27 or choice.number == 42 or choice.number == 43 or choice.number == 47 or choice.number == 5
+      if [5, 27, 42, 43, 47, 54].include?(choice.number)
         if level == 1
           row << "<td class='choice'><a href='#' data-choicenumber='#{choice.number}' data-choicelevel='#{i + 1}' id='c#{choice.number}l#{i + 1}' title='#{choice.descriptions[i]}' class='choiceLink' >A</a></td>"
         end
@@ -89,15 +94,28 @@ module Helper
     "<tr class='#{choice.incremental_or_alternative}' id='r#{choice.number}'>#{row.join('')}<td class='choice' id='d#{choice.number}'></td></tr>"
   end
 
+  def generate_link(choice)
+    link = "<a target='_new' "
+    link += "href='/assets/onepage/#{choice.doc}' " unless (choice.doc.nil? || choice.doc.empty?)
+    unless (choice.descriptions[5].nil? || choice.descriptions[5].empty?)
+      title = choice.descriptions[5].gsub(/'/,"\"")
+      link += "title='#{title}' "
+      link += "onmouseover='twentyfifty.startDemo(#{choice.number}); return true;' "
+      link += "onmouseout='twentyfifty.stopDemo(#{choice.number});return true;' "
+    end
+    link += "> #{choice.name} </a>"
+    link
+  end
+
   def view_names
     {
       "primary_energy_chart" => "All Energy",
       "electricity" => "Electricity",
-      "energy_security" => "Energy Security",
+      # "energy_security" => "Energy Security",
       "emissions" => "Energy Emissions",
       "sankey" => "Energy Flows",
       "map" => "Land Requirement",
-      "grid_balancing_summer" => "Grid Balancing",
+      # "grid_balancing_summer" => "Grid Balancing",
       "total_cost" => "Energy Costs",
       "my_story" => "My Story",
       "assumptions" => "Assumptions",
